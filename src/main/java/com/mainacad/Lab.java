@@ -2,6 +2,8 @@ package com.mainacad;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -21,6 +23,14 @@ public class Lab
     private static final By SELECT_YEAR = By.cssSelector(".react-datepicker__year-select");
     private static final By SELECT_1984_YEAR = By.cssSelector("[value='1984']");
     private static final By SELECT_DAY_18 = By.cssSelector(".react-datepicker__week:nth-child(3) .react-datepicker__day:nth-child(5)");
+    private static final By INSERT_VALUE_FOR_SUBJECT = By.xpath("/html//input[@id='subjectsInput']");
+    private static final By SELECT_HOBBIES_SPORTS = By.xpath("//label[contains(.,'Sports')]");
+    private static final By CURRENT_ADDRESS = By.id("currentAddress");
+    private static final By INSERT_VALUE_FOR_STATE = By.xpath("/html//input[@id='react-select-3-input']");
+    private static final By INSERT_VALUE_FOR_CITY = By.xpath("/html//input[@id='react-select-4-input']");
+    private static final By TAP_ON_SUBMIT_BUTTON = By.id("submit");
+    private static final By TAP_ON_CLOSE_BUTTON = By.id("closeLargeModal");
+
 
     public static void main( String[] args )
     {
@@ -29,8 +39,12 @@ public class Lab
         WebDriver driver = new ChromeDriver();
         driver.get("https://demoqa.com/automation-practice-form");
         driver.manage().window().maximize();
+        //JavascriptExecutor js = (JavascriptExecutor) driver;
+        //js.executeScript("document.body.style.zoom='70%'");
+        JavascriptExecutor scrollDown = (JavascriptExecutor)driver;
 
-        //Заполняем поле firstNameField
+
+        ///Заполняем поле firstNameField
         WebElement firstNameField = driver.findElement(FIRST_NAME_BUTTON);
         firstNameField.sendKeys("Test");
 
@@ -66,15 +80,45 @@ public class Lab
         WebElement selectDay = driver.findElement(SELECT_DAY_18);
         selectDay.click();
 
+        //Выбираем Subjects
+        WebElement valueForSubjects = driver.findElement(INSERT_VALUE_FOR_SUBJECT);
+        valueForSubjects.sendKeys("Eng");
+        valueForSubjects.sendKeys(Keys.ENTER);
 
+        //Скролим вниз
+        scrollDown.executeScript("window.scrollBy(0,250)", "");
 
+        //Выбираем хобби спорт
+        WebElement selectHobbiesSport = driver.findElement(SELECT_HOBBIES_SPORTS);
+        selectHobbiesSport.click();
 
+        //Заполняем адресс
+        WebElement currentAddress = driver.findElement(CURRENT_ADDRESS);
+        currentAddress.sendKeys("Test");
 
+        //Скролим вниз
+        scrollDown.executeScript("window.scrollBy(0,250)", "");
 
+        //Выбираем значение для State
+        WebElement valueforState = driver.findElement(INSERT_VALUE_FOR_STATE);
+        valueforState.sendKeys("Har");
+        valueforState.sendKeys(Keys.ENTER);
 
+        //Выбираем значение для CITY
+        WebElement valueforCITY = driver.findElement(INSERT_VALUE_FOR_CITY);
+        valueforCITY.sendKeys("Kar");
+        valueforCITY.sendKeys(Keys.ENTER);
 
+        //Нажимаем на кнопку SUBMIT
+        WebElement tapOnSubmitButton = driver.findElement(TAP_ON_SUBMIT_BUTTON);
+        tapOnSubmitButton.click();
 
+        //Нажимаем на кнопку Close
+        WebElement tapOnCloseButton = driver.findElement(TAP_ON_CLOSE_BUTTON);
+        tapOnCloseButton.click();
 
+        //Закрываем браузер
+         driver.quit();
 
     }
 }
