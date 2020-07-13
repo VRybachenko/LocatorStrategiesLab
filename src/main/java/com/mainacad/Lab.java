@@ -30,6 +30,7 @@ public class Lab
     private static final By INSERT_VALUE_FOR_CITY = By.xpath("/html//input[@id='react-select-4-input']");
     private static final By TAP_ON_SUBMIT_BUTTON = By.id("submit");
     private static final By TAP_ON_CLOSE_BUTTON = By.id("closeLargeModal");
+    private static final By TAP_ON_SELECT_PICTURE_BUTTON = By.id("uploadPicture");
 
     public static void main( String[] args )
     {
@@ -43,7 +44,7 @@ public class Lab
         //JavascriptExecutor scrollDown = (JavascriptExecutor)driver;
         WebElement selectHobbiesSports = driver.findElement(SELECT_HOBBIES_SPORTS);
         WebElement insertValueForState = driver.findElement(INSERT_VALUE_FOR_STATE);
-        
+
         ///Заполняем поле firstNameField
         WebElement firstNameField = driver.findElement(FIRST_NAME_BUTTON);
         firstNameField.sendKeys("Test");
@@ -92,6 +93,10 @@ public class Lab
         //Выбираем хобби спорт
         WebElement selectHobbiesSport = driver.findElement(SELECT_HOBBIES_SPORTS);
         selectHobbiesSport.click();
+
+        //Загружаем картинку
+        WebElement selectPicture = driver.findElement(TAP_ON_SELECT_PICTURE_BUTTON);
+        selectPicture.sendKeys("E:\\My Space\\Repository_1\\no_bug.png");
 
         //Заполняем адресс
         WebElement currentAddress = driver.findElement(CURRENT_ADDRESS);
