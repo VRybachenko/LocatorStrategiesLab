@@ -31,7 +31,6 @@ public class Lab
     private static final By TAP_ON_SUBMIT_BUTTON = By.id("submit");
     private static final By TAP_ON_CLOSE_BUTTON = By.id("closeLargeModal");
 
-
     public static void main( String[] args )
     {
         WebDriverManager.chromedriver().setup();
@@ -41,9 +40,10 @@ public class Lab
         driver.manage().window().maximize();
         //JavascriptExecutor js = (JavascriptExecutor) driver;
         //js.executeScript("document.body.style.zoom='70%'");
-        JavascriptExecutor scrollDown = (JavascriptExecutor)driver;
-
-
+        //JavascriptExecutor scrollDown = (JavascriptExecutor)driver;
+        WebElement selectHobbiesSports = driver.findElement(SELECT_HOBBIES_SPORTS);
+        WebElement insertValueForState = driver.findElement(INSERT_VALUE_FOR_STATE);
+        
         ///Заполняем поле firstNameField
         WebElement firstNameField = driver.findElement(FIRST_NAME_BUTTON);
         firstNameField.sendKeys("Test");
@@ -86,7 +86,8 @@ public class Lab
         valueForSubjects.sendKeys(Keys.ENTER);
 
         //Скролим вниз
-        scrollDown.executeScript("window.scrollBy(0,250)", "");
+        // scrollDown.executeScript("window.scrollBy(0,250)", "");
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", selectHobbiesSports);
 
         //Выбираем хобби спорт
         WebElement selectHobbiesSport = driver.findElement(SELECT_HOBBIES_SPORTS);
@@ -94,10 +95,11 @@ public class Lab
 
         //Заполняем адресс
         WebElement currentAddress = driver.findElement(CURRENT_ADDRESS);
-        currentAddress.sendKeys("Test");
+        currentAddress.sendKeys("4 Privet Drive, Surrey");
 
         //Скролим вниз
-        scrollDown.executeScript("window.scrollBy(0,250)", "");
+        //scrollDown.executeScript("window.scrollBy(0,250)", "");
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", insertValueForState);
 
         //Выбираем значение для State
         WebElement valueforState = driver.findElement(INSERT_VALUE_FOR_STATE);
@@ -119,6 +121,5 @@ public class Lab
 
         //Закрываем браузер
          driver.quit();
-
     }
 }
