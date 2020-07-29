@@ -9,8 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 
-public class Lab
-{
+public class Lab {
     private static final By FIRST_NAME_BUTTON = By.id("firstName");
     private static final By LAST_NAME_BUTTON = By.id("lastName");
     private static final By USER_EMAIL_FIELD = By.id("userEmail");
@@ -32,8 +31,7 @@ public class Lab
     private static final By TAP_ON_CLOSE_BUTTON = By.id("closeLargeModal");
     private static final By TAP_ON_SELECT_PICTURE_BUTTON = By.id("uploadPicture");
 
-    public static void main( String[] args )
-    {
+    public static void main(String[] args) {
         WebDriverManager.chromedriver().setup();
         //Создаём вебдрайвер
         WebDriver driver = new ChromeDriver();
@@ -104,10 +102,11 @@ public class Lab
 
         //Скролим вниз
         //scrollDown.executeScript("window.scrollBy(0,250)", "");
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", insertValueForState);
+        //((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", insertValueForState);
 
         //Выбираем значение для State
         WebElement valueforState = driver.findElement(INSERT_VALUE_FOR_STATE);
+        valueforState.isDisplayed();
         valueforState.sendKeys("Har");
         valueforState.sendKeys(Keys.ENTER);
 
@@ -125,6 +124,6 @@ public class Lab
         tapOnCloseButton.click();
 
         //Закрываем браузер
-         driver.quit();
+        driver.quit();
     }
 }
